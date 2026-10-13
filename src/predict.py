@@ -27,7 +27,7 @@ def predict(model, txn: dict) -> dict:
     features    = prepare_transaction(txn)
     prediction  = model.predict(features)[0]
     probability = model.predict_proba(features)[0][1]
-    risk = "HIGH" if probability >= 0.70 else "MEDIUM" if probability >= 0.40 else "LOW"
+    risk = "HIGH" if probability >= 0.70 else "MEDIUM" if probability >= 0.45 else "LOW"
     return {
         "prediction" : "FRAUD" if prediction == 1 else "LEGITIMATE",
         "confidence" : round(probability * 100, 1),
